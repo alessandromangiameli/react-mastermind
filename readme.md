@@ -1,9 +1,9 @@
-#React Mastermind
+# React Mastermind
 Classic mastermind game implemented in React and Redux
 
-##Installation
+## Installation
 npm install
 
-##usage
+## Usage
 npm run dev
 uses webpack dev server on localhost:8080
