@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {reducer as game } from './game/index';
+import { gameReducer as game } from 'reducers/gameReducer';
 
 export default combineReducers({
     game
