@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class Hole extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             value : 'verde'

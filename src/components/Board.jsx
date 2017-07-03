@@ -2,15 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Row from 'components/Row';
 
-let renderRows = (nRows) => {
-    nRows++;
-    let rows = [];
-    for (let i = 0; i < nRows; i++) {
-        rows.push((<Row key={i}></Row>));
-    }
-    return rows;
-};
-
 const Board = ({rows, onAddRowClick}) => (
     <div className="board">
         
@@ -19,10 +10,14 @@ const Board = ({rows, onAddRowClick}) => (
         <a href="#" onClick={(e) => {
                     e.preventDefault();
                     onAddRowClick();
-                }}>Add row</a>
+                }}>
+            Add row
+        </a>
 
         {
-            renderRows(rows.length)
+            rows.map((item) => {
+                return(<Row key={item.id} row={item.id}/>)
+            })
         }
 
     </div>

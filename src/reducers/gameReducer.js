@@ -7,7 +7,9 @@ export const gameReducer = (state = {}, action) => {
         // let service = new GameService();
         let service = IoC.container.gameService;
         state.code = service.generateCode();
-        state.rows = [];
+        state.rows = [{
+            id : 1
+        }];
         state.test = 'test';
     }
 
