@@ -2,30 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Row from 'components/Row';
 
-export default class Board extends React.Component {
-    constructor() {
-        super();
+let renderRows = (nRows) => {
+    nRows++;
+    let rows = [];
+    for (let i = 0; i < nRows; i++) {
+        rows.push((<Row key={i}></Row>));
     }
+    return rows;
+};
 
-    getRows() {
-        let rows = [];
-        for (let i = 0; i < 7; i++) {
-            rows.push((<Row key={i}></Row>));
+const Board = ({rows, onAddRowClick}) => (
+    <div className="board">
+        
+        <h1>Board</h1>
+
+        <a href="#" onClick={(e) => {
+                    e.preventDefault();
+                    onAddRowClick();
+                }}>Add row</a>
+
+        {
+            renderRows(rows.length)
         }
-        return rows;
-    }
 
-    render() {
-        let rows = this.getRows();
+    </div>
+)
 
-        return (
-            <div className="board">
-                <h1>Board</h1>
-                {
-                    rows
-                }
-            </div>
-        )
-    }
-
-}
+export default Board;

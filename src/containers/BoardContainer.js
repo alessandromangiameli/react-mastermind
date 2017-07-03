@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import Board from 'components/Board';
+import { addRow } from 'reducers/gameActions';
 
 const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        rows: state.game
-    }
+    return state.game
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        onAddRowClick : () => {
+            dispatch(addRow())
+        }
     }
 }
 
