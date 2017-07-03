@@ -24,7 +24,8 @@ module.exports = {
         alias: {
         	containers: path.join(__dirname, 'src', 'containers'),
         	components: path.join(__dirname, 'src', 'components'),
-        	reducers: path.join(__dirname, 'src', 'reducers')
+        	reducers: path.join(__dirname, 'src', 'reducers'),
+        	services: path.join(__dirname, 'src', 'services'),
         }
 
     }
