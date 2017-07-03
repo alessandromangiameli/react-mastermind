@@ -9,7 +9,15 @@ export default function GameService() {
         return code;
     }
 
+    this.makeRow = (id) => {
+        return {
+            id,
+            holes : [0,0,0,0]
+        }
+    }
+
     return {
         generateCode: this.generateCode,
+        makeRow : this.makeRow
     }
 }

@@ -1,16 +1,16 @@
 // import GameService from 'services/GameService';
 import IoC from 'services/serviceContainer';
 
+// let service = new GameService();
+let gameService = IoC.container.gameService;
+
 export const gameReducer = (state = {}, action) => {
 
     if(!state.code) {
-        // let service = new GameService();
-        let service = IoC.container.gameService;
-        state.code = service.generateCode();
-        state.rows = [{
-            id : 1
-        }];
-        state.test = 'test';
+        state.code = gameService.generateCode();
+        state.rows = [
+            gameService.makeRow(1)
+        ]
     }
 
     switch(action.type) {
@@ -19,9 +19,7 @@ export const gameReducer = (state = {}, action) => {
             return Object.assign({}, state, {
                 rows : [
                     ...state.rows,
-                    {
-                        id : state.rows.length + 1
-                    }
+                    gameService.makeRow(state.rows.length + 1)
                 ]
             })
 

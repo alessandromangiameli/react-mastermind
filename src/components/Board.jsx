@@ -16,7 +16,7 @@ const Board = ({rows, onAddRowClick}) => (
 
         {
             rows.map((item) => {
-                return(<Row key={item.id} row={item.id}/>)
+                return(<Row key={item.id} row={item}/>)
             })
         }
 

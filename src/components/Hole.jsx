@@ -6,6 +6,7 @@ export default class Hole extends React.Component {
         this.state = {
             value : 'verde'
         }
+        this.props = props;
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -16,8 +17,8 @@ export default class Hole extends React.Component {
     render() {
         return (
             <select value={this.state.value} onChange={this.handleChange}>
-                <option value="rosso">rosso</option>
-                <option value="verde">verde</option>
+                <option value="rosso">rosso {this.props.value}</option>
+                <option value="verde">verde {this.props.value}</option>
             </select>
         )
     }
