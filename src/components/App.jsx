@@ -3,7 +3,7 @@ import BoardContainer from 'containers/BoardContainer';
 
 const App = () => (
     <div>
-        <h1>test</h1>
+        <h1>Mastermind</h1>
         <BoardContainer />
     </div>
 );

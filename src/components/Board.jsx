@@ -1,22 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Row from 'components/Row';
+// import Row from 'components/Row';
+import RowContainer from 'containers/RowContainer';
 
-const Board = ({rows, onAddRowClick}) => (
+const Board = ({rows}) => (
     <div className="board">
         
-        <h1>Board</h1>
-
-        <a href="#" onClick={(e) => {
-                    e.preventDefault();
-                    onAddRowClick();
-                }}>
-            Add row
-        </a>
-
+        <h2>Game board component</h2>
         {
             rows.map((item) => {
-                return(<Row key={item.id} row={item}/>)
+                return(<RowContainer key={item.id} row={item}/>)
             })
         }
 

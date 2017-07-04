@@ -1,14 +1,20 @@
 import React from 'react';
 import Hole from 'components/Hole';
 
-const Row = (props) => (
+const Row = ({row, onAddRowClick}) => (
     <div className="row">
-        row {props.row.id}
+        row {row.id}
         {
-            props.row.holes.map((item, key) => {
-                return (<Hole key={key} row={props.row} value={item}/>)
+            row.holes.map((item, key) => {
+                return (<Hole key={key} row={row} value={item}/>)
             })
         }
+        <a href="#" onClick={(e) => {
+                    e.preventDefault();
+                    onAddRowClick();
+                }}>
+            check
+        </a>
     </div>
 )
 

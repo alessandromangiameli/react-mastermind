@@ -9,7 +9,7 @@ export const gameReducer = (state = {}, action) => {
     if(!state.code) {
         state.code = gameService.generateCode();
         state.rows = [
-            gameService.makeRow(1)
+            gameService.makeRow(0)
         ]
     }
 
@@ -19,7 +19,7 @@ export const gameReducer = (state = {}, action) => {
             return Object.assign({}, state, {
                 rows : [
                     ...state.rows,
-                    gameService.makeRow(state.rows.length + 1)
+                    gameService.makeRow(state.rows.length)
                 ]
             })
 
