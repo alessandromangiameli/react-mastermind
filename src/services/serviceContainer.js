@@ -1,5 +1,5 @@
 import Bottle from 'bottlejs';
-import GameService from 'services/GameService';
+import GameService from 'services/gameService';
 
 let IoC = new Bottle();
 
