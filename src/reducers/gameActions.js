@@ -11,3 +11,10 @@ export const checkRow = (row) => {
         payload : { row } 
     }
 }
+
+export const setHole = (hole)  => {
+    return {
+        type : 'HOLE_SET',
+        payload : { hole }
+    }
+}

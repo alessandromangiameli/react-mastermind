@@ -6,7 +6,9 @@ export default function GameService() {
             let randomNumber = Math.floor(Math.random() * 6) + 1;
             this.code.push(randomNumber);
         }
-        return this.code;
+        
+        return [1,2,3,4];
+        // return this.code;
     }
 
     this.makeRow = (id) => {

@@ -1,12 +1,12 @@
 import React from 'react';
-import Hole from 'components/Hole';
+import HoleContainer from 'containers/HoleContainer';
 
 const Row = ({row, onAddRowClick}) => (
     <div className="row">
         row {row.id}
         {
             row.holes.map((item, key) => {
-                return (<Hole key={key} row={row} value={item}/>)
+                return (<HoleContainer key={key} row={row} value={item} position={key}/>)
             })
         }
         <a href="#" onClick={(e) => {

@@ -1,24 +1,30 @@
 import React from 'react';
 
 export default class Hole extends React.Component {
-    constructor(props) {
+    constructor({ row, value, position, onSetHole }) {
         super();
+
         this.state = {
-            value : 'verde'
+            value : this.value
         }
-        this.props = props;
 
         this.handleChange = this.handleChange.bind(this);
+        this.onSetHole = onSetHole.bind(this);
+        this.row = row;
+        this.position = position;
     }
 
     handleChange(event) {
         this.setState({value : event.target.value});
+        this.onSetHole({row : this.row.id, position: this.position, value: event.target.value})
     }
     render() {
         return (
             <select value={this.state.value} onChange={this.handleChange}>
-                <option value="rosso">rosso {this.props.value}</option>
-                <option value="verde">verde {this.props.value}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
             </select>
         )
     }
