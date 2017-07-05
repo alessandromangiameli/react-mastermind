@@ -1,23 +1,39 @@
 export default function GameService() {
     
     this.generateCode = () => {
-        let code = [];
+        this.code = [];
         for (let i = 0; i < 4; i++) {
             let randomNumber = Math.floor(Math.random() * 6) + 1;
-            code.push(randomNumber);
+            this.code.push(randomNumber);
         }
-        return code;
+        return this.code;
     }
 
     this.makeRow = (id) => {
         return {
             id,
-            holes : [0,0,0,0]
+            holes : [0,0,0,0],
+            results : [],
+            status : false
         }
+    }
+
+    this.checkRow = (row) => {
+        row.holes.forEach((item, index) => {
+            if(item === this.code[index]) {
+                row.status.push(1);
+            }
+        });
+
+        if(row.status === [1,1,1,1]) {
+            row.status = true;
+        }
+        return row;
     }
 
     return {
         generateCode: this.generateCode,
-        makeRow : this.makeRow
+        makeRow : this.makeRow,
+        checkRow : this.checkRow
     }
 }

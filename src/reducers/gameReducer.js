@@ -15,13 +15,26 @@ export const gameReducer = (state = {}, action) => {
 
     switch(action.type) {
 
-        case 'ADD_ROW':
+        case 'ROW_ADD':
             return Object.assign({}, state, {
                 rows : [
                     ...state.rows,
                     gameService.makeRow(state.rows.length)
                 ]
-            })
+            });
+        
+        case 'ROW_CHECK':
+            let row = gameService.checkRow(action.payload.row);
+            if(row.status) {
+                alert('win')
+            } else {
+                return Object.assign({}, state, {
+                    rows: [
+                        ...state.rows,
+                        gameService.makeRow(state.rows.length)
+                    ]
+                });
+            }
 
         default:
             return state;
