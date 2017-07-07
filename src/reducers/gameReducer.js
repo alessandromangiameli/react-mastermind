@@ -42,7 +42,7 @@ export const gameReducer = (state = {}, action) => {
         case 'HOLE_SET': 
             let hole = action.payload.hole;
             let newState = Object.assign({}, state);
-            newState.rows[hole.row].holes[hole.position] = hole.value;
+            newState.rows[hole.row].holes[hole.position] = parseInt(hole.value);
             return newState;
 
         default:

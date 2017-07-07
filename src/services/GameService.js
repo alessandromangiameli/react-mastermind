@@ -7,8 +7,7 @@ export default function GameService() {
             this.code.push(randomNumber);
         }
         
-        return [1,2,3,4];
-        // return this.code;
+        return this.code;
     }
 
     this.makeRow = (id) => {
@@ -16,13 +15,14 @@ export default function GameService() {
             id,
             holes : [0,0,0,0],
             results : [],
-            status : false
+            status : []
         }
     }
 
     this.checkRow = (row) => {
         row.holes.forEach((item, index) => {
             if(item === this.code[index]) {
+                console.log(item, this.code[index]);
                 row.status.push(1);
             }
         });
@@ -30,6 +30,7 @@ export default function GameService() {
         if(row.status === [1,1,1,1]) {
             row.status = true;
         }
+
         return row;
     }
 
