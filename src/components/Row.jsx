@@ -1,21 +1,49 @@
 import React from 'react';
 import HoleContainer from 'containers/HoleContainer';
+import Result from 'components/Result';
 
-const Row = ({row, onAddRowClick}) => (
-    <div className="row">
-        row {row.id}
-        {
-            row.holes.map((item, key) => {
-                return (<HoleContainer key={key} row={row} value={item} position={key}/>)
-            })
-        }
-        <a href="#" onClick={(e) => {
-                    e.preventDefault();
-                    onAddRowClick();
-                }}>
-            check
-        </a>
-    </div>
-)
+export default class Row extends React.Component {
+    constructor(props) {
+        super();
+        this.state = {
+            row : props.row
+        };
+        this.onAddRowClick = props.onAddRowClick.bind(this);
+        this.onAddRowClickWrapper = this.onAddRowClickWrapper.bind(this);
+    }
 
-export default Row;
+    onAddRowClickWrapper() {
+        this.onAddRowClick();
+        this.setState({
+            row : this.props.row
+        });
+    }
+
+    render() {
+        return (
+            <div className="row">
+                row {this.state.row.id}
+                {
+                    this.state.row.holes.map((item, key) => {
+                        return (<HoleContainer key={key} row={this.state.row} value={item} position={key}/>)
+                    })
+                }
+                <a href="#" onClick={(e) => {
+                            e.preventDefault();
+                            this.onAddRowClickWrapper();
+                        }}>
+                    check
+                </a>
+                {
+                    this.state.row.results.map((item, key) => {
+                        return (<Result key={key} value={item.value} />)
+                    })
+                }
+            </div>
+        )
+    }
+}
+
+
+
+

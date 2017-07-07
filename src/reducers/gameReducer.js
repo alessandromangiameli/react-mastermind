@@ -36,6 +36,7 @@ export const gameReducer = (state = {}, action) => {
                 });
                 newState.rows[newState.rows.length - 1] = row;
                 newState.rows.push(gameService.makeRow(state.rows.length));
+                console.log(newState);
                 return newState;
             }
 

@@ -1,13 +1,23 @@
 export default function GameService() {
     
-    this.generateCode = () => {
-        this.code = [];
+    
+    this.generateCode = (allowDuplicate = false) => {
+        this.code = []; 
         for (let i = 0; i < 4; i++) {
-            let randomNumber = Math.floor(Math.random() * 6) + 1;
+            let randomNumber = this.makeRandomNumber();
+            if(!allowDuplicate) {
+                while(this.code.indexOf(randomNumber) > -1) {
+                    randomNumber = this.makeRandomNumber();
+                }
+            }
             this.code.push(randomNumber);
         }
         
         return this.code;
+    }
+
+    this.makeRandomNumber = () => {
+        return Math.floor(Math.random() * 6) + 1;
     }
 
     this.makeRow = (id) => {
@@ -15,22 +25,30 @@ export default function GameService() {
             id,
             holes : [0,0,0,0],
             results : [],
-            status : []
+            status : false
         }
     }
 
     this.checkRow = (row) => {
         row.holes.forEach((item, index) => {
             if(item === this.code[index]) {
-                console.log(item, this.code[index]);
-                row.status.push(1);
+                row.results.push({
+                    item,
+                    value : 'ok'
+                });           
+            } else {
+                if(this.code.indexOf(item) != -1) {
+                    row.results.push({
+                        item,
+                        value : 'ko' 
+                    });    
+                } 
             }
         });
 
-        if(row.status === [1,1,1,1]) {
+        if(row.results === [1,1,1,1]) {
             row.status = true;
         }
-
         return row;
     }
 
