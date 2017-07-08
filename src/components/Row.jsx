@@ -23,7 +23,7 @@ export default class Row extends React.Component {
         return (
             <div className="row">
                 row {this.state.row.id}
-                {
+                {   
                     this.state.row.holes.map((item, key) => {
                         return (<HoleContainer key={key} row={this.state.row} value={item} position={key}/>)
                     })
@@ -34,11 +34,6 @@ export default class Row extends React.Component {
                         }}>
                     check
                 </a>
-                {
-                    this.state.row.results.map((item, key) => {
-                        return (<Result key={key} value={item.value} />)
-                    })
-                }
             </div>
         )
     }

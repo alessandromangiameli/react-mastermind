@@ -1,44 +1,32 @@
-// import GameService from 'services/GameService';
-import IoC from 'services/serviceContainer';
-
-// let service = new GameService();
-let gameService = IoC.container.gameService;
+import { addRow, generateCode, hasWin, validateRow } from 'services/gameService';
 
 export const gameReducer = (state = {}, action) => {
 
     if(!state.code) {
-        state.code = gameService.generateCode();
-        state.rows = [
-            gameService.makeRow(0)
-        ]
+        state.code = generateCode();
+        state.rows = addRow([]);
+        state.hasWin = false;
     }
 
     switch(action.type) {
 
         case 'ROW_ADD':
             return Object.assign({}, state, {
-                rows : [
-                    ...state.rows,
-                    gameService.makeRow(state.rows.length)
-                ]
+                rows : addRow(state.rows)
             });
         
         case 'ROW_CHECK':
-            let row = gameService.checkRow(action.payload.row);
-            if(row.status) {
-                alert('win')
-            } else {
+            let row = action.payload.row;
+            return Object.assign({}, state, {
+                win : hasWin(row.holes, state.code),
 
-                let newState = Object.assign({}, state, {
-                    rows: [
-                        ...state.rows
-                    ]
-                });
-                newState.rows[newState.rows.length - 1] = row;
-                newState.rows.push(gameService.makeRow(state.rows.length));
-                console.log(newState);
-                return newState;
-            }
+                //add a row and add results to current row
+                rows : addRow(state.rows
+                            .slice(0,row.id)
+                            .concat(validateRow(state.rows[row.id], state.code))
+                            .concat(state.rows.slice(row.id + 1))
+                        )
+            });
 
         case 'HOLE_SET': 
             let hole = action.payload.hole;
