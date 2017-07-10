@@ -13,10 +13,23 @@ export default class Row extends React.Component {
     }
 
     onAddRowClickWrapper() {
-        this.onAddRowClick();
+
+        if(this.validateRow()) {
+            this.onAddRowClick();
+        } else {
+            alert('invalid row');
+        }
         // this.setState({
         //     row : this.props.row
         // });
+    }
+
+    validateRow() {
+        let validValues = this.state.row.holes.filter(item => {
+            return item > 0;
+        });
+
+        return validValues.length === 4;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,12 +51,13 @@ export default class Row extends React.Component {
                         return (<HoleContainer key={key} row={this.state.row} value={item} position={key}/>)
                     })
                 }
-                {<a href="#" onClick={(e) => {
+                {   
+                   ! Object.keys(this.state.row.results).length &&  <a href="#" onClick={(e) => {
                             e.preventDefault();
                             this.onAddRowClickWrapper();
                         }}>
                     check
-                </a>
+                    </a>
                 }
                 
                 {resultComponent}
