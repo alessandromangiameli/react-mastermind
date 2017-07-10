@@ -1,6 +1,6 @@
 interface Results {
-    inPlace : number[],
-    present: number[]
+    inPlace? : number[],
+    present? : number[]
 }
 
 interface Row {
@@ -38,10 +38,7 @@ export const addRow = (rows: Row[] = []): Row[]  => {
         {
             id: rows.length,
             holes : [0,0,0,0],
-            results : {
-                inPlace : [],
-                present : []
-            }
+            results : {}
         }
     ]
 }

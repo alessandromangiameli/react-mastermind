@@ -18,10 +18,7 @@ export default class Row extends React.Component {
             this.onAddRowClick();
         } else {
             alert('invalid row');
-        }
-        // this.setState({
-        //     row : this.props.row
-        // });
+        }  
     }
 
     validateRow() {
@@ -33,7 +30,6 @@ export default class Row extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log(nextProps);
         this.setState({
             row : nextProps.row
         });
