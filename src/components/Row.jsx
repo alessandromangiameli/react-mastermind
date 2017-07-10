@@ -14,12 +14,22 @@ export default class Row extends React.Component {
 
     onAddRowClickWrapper() {
         this.onAddRowClick();
+        // this.setState({
+        //     row : this.props.row
+        // });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // console.log(nextProps);
         this.setState({
-            row : this.props.row
+            row : nextProps.row
         });
     }
 
     render() {
+
+        let resultComponent = Object.keys(this.state.row.results).length ? <Result results={this.state.row.results} /> : false;
+
         return (
             <div className="row">
                 row {this.state.row.id}
@@ -28,12 +38,15 @@ export default class Row extends React.Component {
                         return (<HoleContainer key={key} row={this.state.row} value={item} position={key}/>)
                     })
                 }
-                <a href="#" onClick={(e) => {
+                {<a href="#" onClick={(e) => {
                             e.preventDefault();
                             this.onAddRowClickWrapper();
                         }}>
                     check
                 </a>
+                }
+                
+                {resultComponent}
             </div>
         )
     }

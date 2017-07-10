@@ -22,7 +22,8 @@ export const addRow = (rows = [])  => {
         ...rows,
         {
             id: rows.length,
-            holes : [0,0,0,0]
+            holes : [0,0,0,0],
+            results : {}
         }
     ]
 }
