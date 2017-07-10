@@ -11,14 +11,19 @@ module.exports = {
         rules: [{
             test: /\.(js|jsx)$/,
             loader: ['babel-loader']
-        }]
+        },
+        { test: /\.(ts|tsx)$/, loader: "awesome-typescript-loader" },
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+        ]
     },
     resolve: {
         extensions: [
             '.js',
             '.jsx',
             '.json',
-            '.scss'
+            '.scss',
+            '.ts',
+            '.tsx'
         ],
 
         alias: {

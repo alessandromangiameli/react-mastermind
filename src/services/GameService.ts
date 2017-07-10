@@ -1,8 +1,19 @@
-export const makeRandomNumber = () => {
+interface Results {
+    inPlace : number[],
+    present: number[]
+}
+
+interface Row {
+    id: number,
+    holes: number[],
+    results: Results
+}
+
+export const makeRandomNumber = (): number => {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-export const generateCode = (allowDuplicate = false) => {
+export const generateCode = (allowDuplicate: boolean = false): number[] => {
     let code = [];
     for (let i = 0; i < 4; i++) {
         let randomNumber = makeRandomNumber();
@@ -17,35 +28,38 @@ export const generateCode = (allowDuplicate = false) => {
     return code;
 }
 
-export const addRow = (rows = [])  => {
+export const addRow = (rows: Row[] = []): Row[]  => {
     return [
         ...rows,
         {
             id: rows.length,
             holes : [0,0,0,0],
-            results : {}
+            results : {
+                inPlace : [],
+                present : []
+            }
         }
     ]
 }
 
 
-export const itemsInPlace = (items, code)  => {
+export const itemsInPlace = (items: number[], code: number[]): number[]  => {
     return items.filter((element, index, array) => {
         return element == code[index]
     });
 }
 
-export const itemsPresent = (items, code) => {
+export const itemsPresent = (items: number[], code: number[]): number[] => {
     return items.filter((element, index) => {
         return code.indexOf(element) > -1 && code.indexOf(element) != index;
     });
 }
 
-export const hasWin = (items, code, filter = itemsInPlace) => {
+export const hasWin = (items: number[], code: number[], filter: Function = itemsInPlace): boolean => {
     return filter(items,code).length === code.length;
 }
 
-export const validateRow = (row, code, filterInPlace = itemsPresent, filterPresent = itemsPresent) => {
+export const validateRow = (row: Row, code: number[], filterInPlace: Function = itemsPresent, filterPresent: Function = itemsPresent): Row => {
     return Object.assign({}, row, {
         results : {
             inPlace : filterInPlace(row.holes, code),
