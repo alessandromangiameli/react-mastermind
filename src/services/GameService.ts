@@ -9,6 +9,10 @@ interface Row {
     results: Results
 }
 
+interface RowFilter {
+    (items: number[], code: number[]): number[]
+}
+
 export const makeRandomNumber = (): number => {
     return Math.floor(Math.random() * 6) + 1;
 }
@@ -43,23 +47,23 @@ export const addRow = (rows: Row[] = []): Row[]  => {
 }
 
 
-export const itemsInPlace = (items: number[], code: number[]): number[]  => {
+export const itemsInPlace: RowFilter = (items: number[], code: number[]): number[]  => {
     return items.filter((element, index, array) => {
         return element == code[index]
     });
 }
 
-export const itemsPresent = (items: number[], code: number[]): number[] => {
+export const itemsPresent: RowFilter = (items: number[], code: number[]): number[] => {
     return items.filter((element, index) => {
         return code.indexOf(element) > -1 && code.indexOf(element) != index;
     });
 }
 
-export const hasWin = (items: number[], code: number[], filter: Function = itemsInPlace): boolean => {
+export const hasWin = (items: number[], code: number[], filter: RowFilter = itemsInPlace): boolean => {
     return filter(items,code).length === code.length;
 }
 
-export const validateRow = (row: Row, code: number[], filterInPlace: Function = itemsPresent, filterPresent: Function = itemsPresent): Row => {
+export const validateRow = (row: Row, code: number[], filterInPlace: RowFilter = itemsPresent, filterPresent: RowFilter = itemsPresent): Row => {
     return Object.assign({}, row, {
         results : {
             inPlace : filterInPlace(row.holes, code),
