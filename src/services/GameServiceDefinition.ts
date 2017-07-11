@@ -1,6 +1,6 @@
 export interface Results {
-    inPlace : number[],
-    present: number[]
+    inPlace? : number[],
+    present?: number[]
 }
 
 export interface Row {
