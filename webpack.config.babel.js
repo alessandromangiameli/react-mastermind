@@ -8,12 +8,10 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
-            test: /\.(js|jsx)$/,
-            loader: ['babel-loader']
-        },
-        { test: /\.(ts|tsx)$/, loader: "awesome-typescript-loader" },
-        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+        rules: [
+            {test: /\.(js|jsx)$/,loader: ['babel-loader']},
+            {test: /\.(ts|tsx)$/, loader: "awesome-typescript-loader" },
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     },
     resolve: {

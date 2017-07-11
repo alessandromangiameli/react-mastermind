@@ -1,17 +1,4 @@
-interface Results {
-    inPlace : number[],
-    present: number[]
-}
-
-interface Row {
-    id: number,
-    holes: number[],
-    results: Results
-}
-
-interface RowFilter {
-    (items: number[], code: number[]): number[]
-}
+import { Row, RowFilter, Results} from './GameServiceDefinition';
 
 export const makeRandomNumber = (): number => {
     return Math.floor(Math.random() * 6) + 1;

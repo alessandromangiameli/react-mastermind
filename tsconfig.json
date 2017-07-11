@@ -7,7 +7,22 @@
         "target": "es5",
         "lib": ["es2015", "es2017", "dom"],
         "jsx": "react",
-        "allowJs": true
+        "allowJs": true,
+        "baseUrl": "./src",
+        "paths" : {
+            "services" : [
+                "./services"
+            ],
+            "containers": [
+                "./container"
+            ],
+            "reducers" : [
+                "./reducers"
+            ],
+            "components" : [
+                "./components"
+            ]
+        }
     },
     "include": [
         "./src/**/*"
