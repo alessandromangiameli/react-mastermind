@@ -1,7 +1,8 @@
+import { Action } from 'typescript-fsa';
 import { addRow, generateCode, hasWin, validateRow } from 'services/gameService';
-import { Row, RowFilter, Results, Action, State } from 'services/GameServiceDefinition';
+import { Row, RowFilter, Results, State } from 'services/GameServiceDefinition';
 
-export const gameReducer = (state: State = {}, action: Action) => {
+export const gameReducer = (state: State = {}, action: Action<any>) : State => {
 
     if(!state.code) {
         state.code = generateCode();

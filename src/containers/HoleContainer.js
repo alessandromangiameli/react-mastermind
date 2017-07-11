@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onSetHole : (hole) => {
-            dispatch(setHole(hole));
+            dispatch(setHole({hole}));
         }
     }
 }

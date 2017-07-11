@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onAddRowClick : () => {
-            dispatch(checkRow(ownProps.row))
+            dispatch(checkRow({row : ownProps.row}))
         }
     }
 } 

@@ -1,21 +1,8 @@
+import actionCreatorFactory from 'typescript-fsa';
 import { Row, Results } from 'services/GameServiceDefinition';
 
-export const addRow = () => {
-    return {
-        type : 'ROW_ADD'
-    }
-}      
+const actionCreator = actionCreatorFactory();
 
-export const checkRow = (row: Row) => {
-    return {
-        type : 'ROW_CHECK',
-        payload : { row } 
-    }
-}
-
-export const setHole = (hole: Results)  => {
-    return {
-        type : 'HOLE_SET',
-        payload : { hole }
-    }
-}
+export const addRow = actionCreator<{}>('ROW_ADD');
+export const checkRow = actionCreator<{row: Row}>('ROW_CHECK');
+export const setHole = actionCreator<{hole: Results}>('HOLE_SET');
