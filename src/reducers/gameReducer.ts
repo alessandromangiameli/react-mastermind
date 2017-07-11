@@ -1,7 +1,7 @@
 import { addRow, generateCode, hasWin, validateRow } from 'services/gameService';
-import { Row, RowFilter, Results} from 'services/GameServiceDefinition';
+import { Row, RowFilter, Results, Action, State } from 'services/GameServiceDefinition';
 
-export const gameReducer = (state = {}, action) => {
+export const gameReducer = (state: State = {}, action: Action) => {
 
     if(!state.code) {
         state.code = generateCode();
@@ -13,7 +13,7 @@ export const gameReducer = (state = {}, action) => {
 
         case 'ROW_ADD':
             return Object.assign({}, state, {
-                rows : addRow(>state.rows)
+                rows : addRow(state.rows)
             });
         
         case 'ROW_CHECK':
